@@ -27,6 +27,21 @@ Y = fft(y, NFFT)/512;
 resultK = 2*abs(Y(1:NFFT/2+1));
 foundK = 0;
 
+%Profile an i
+[y, Fs] = audioread('I1.wav');
+NFFT = 2^nextpow2(512);
+Y = fft(y, NFFT)/512;
+resultI = 2*abs(Y(1:NFFT/2+1));
+foundI = 0;
+
+%Profile an s
+[y, Fs] = audioread('S1.wav');
+NFFT = 2^nextpow2(512);
+Y = fft(y, NFFT)/512;
+resultS = 2*abs(Y(1:NFFT/2+1));
+foundS = 0;
+
+
 [y, Fs] = audioread('Jenkins (1).wav');
 %sound(y, Fs);
 % Fs = sample rate
@@ -69,6 +84,21 @@ if (foundN == 1 & abs(2*abs(Z(1:NFFT/2+1)) - resultK(1:NFFT/2+1)) < .01) %25 cut
     display(answer);
     foundK = 1;
 end
+if (foundK == 1 & abs(2*abs(Z(1:NFFT/2+1)) - resultK(1:NFFT/2+1)) < .01)
+    answer = 'Found an I!';
+    count=count+1;
+    display(count);
+    display(answer);
+    foundI = 1;
+end
+if (foundI == 1 & abs(2*abs(Z(1:NFFT/2+1)) - resultK(1:NFFT/2+1)) < .01)
+    answer = 'Found an S!';
+    count=count+1;
+    display(count);
+    display(answer);
+    foundS = 1;
+end
+
 pause(0.01);
 plot (f, abs(2*abs(Z(1:NFFT/2+1)) - resultJ));
 pause(0.01);
