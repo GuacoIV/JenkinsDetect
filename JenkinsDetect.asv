@@ -16,10 +16,8 @@ Z = fft(z, NFFT)/512;
 %f = Fs/2*linspace(0,1,NFFT/2+1);
 %plot(f,2*abs(Z(1:NFFT/2+1)))
 %cla;
-%count=count+1;
-%display(count);
 %melcepst(z, 44100, 'M', 12, floor(3*log(4100)), 512, 512/2, 0, 0.5)
-%pause(0.02);
+pause(0.02);
 
 if (abs(2*abs(Z(1:NFFT/2+1)) - resultJ) < .01)
     answer = 'Found a J!';
