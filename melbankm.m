@@ -101,7 +101,7 @@ function [x,mc,mn,mx]=melbankm(p,n,fs,fl,fh,w)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Note "FFT bin_0" assumes DC = bin 0 whereas "FFT bin_1" means DC = bin 1
-
+eml.extrinsic('sparse');
 if nargin < 6
     w='tz'; % default options
     if nargin < 5
@@ -219,9 +219,9 @@ if any(w=='y')          % preserve power in FFT
     c=[1:k2+b1-1 k2+b1:k3+b1 k2+b1:k3+b1 k3+b1+1:fn2+1]; % FFT bin1
     v=[ones(1,k2+b1-1) pm(k2:k3) 1-pm(k2:k3) ones(1,fn2-k3-b1+1)];
 else
-    r=[1+fp(1:k3) fp(k2:k4)]; % filter number_1
+    r=[1+fp(1:norm(k3)) fp(norm(k2):k4)]; % filter number_1
     c=[1:k3 k2:k4]; % FFT bin_1 - b1
-    v=[pm(1:k3) 1-pm(k2:k4)];
+    v=[pm(1:norm(k3)) 1-pm(norm(k2):k4)];
     mn=b1+1; % lowest fft bin_1
     mx=b4+1;  % highest fft bin_1
 end
@@ -242,6 +242,9 @@ end
 % sort out the output argument options
 %
 if nargout > 2
+    %r
+    %c
+    %v
     x=sparse(r,c,v);
     if nargout == 3     % if exactly three output arguments, then
         mc=mn;          % delete mc output for legacy code compatibility

@@ -98,13 +98,18 @@ else
 end
 f=rfft(z.');
 [m,a,b]=melbankm(p,n,fs,fl,fh,w);
-pw=f(a:b,:).*conj(f(a:b,:));
+pw=f(norm(a):b,:).*conj(f(norm(a):b,:));
 pth=max(pw(:))*1E-20;
 if any(w=='p')
    y=log(max(m*pw,pth));
+   %size(y)
+   %disp('Option 1')
 else
    ath=sqrt(pth);
-   y=log(max(m*abs(f(a:b,:)),ath));
+   y = zeros(1,2);
+   y=log(max(m*abs(f(norm(a):b,:)),ath));
+   %size(y)
+   %disp('Option 2')
 end
 c=rdct(y).';
 nf=size(c,1);
