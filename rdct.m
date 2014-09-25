@@ -59,6 +59,8 @@ if fl
         end
     end
     %Was x=x(:);
+else
+    newx = x;
 end
 m = 0;
 k = 0;

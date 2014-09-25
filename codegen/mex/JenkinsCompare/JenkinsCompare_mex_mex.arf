@@ -1,0 +1,11 @@
+libemlrt.lib
+libcovrt.lib
+libut.lib
+libmwblas.lib
+libmwmathutil.lib
+/export:mexFunction
+/export:emlrtMexFcnProperties
+/export:JenkinsCompare
+/export:JenkinsCompare_initialize
+/export:JenkinsCompare_terminate
+/export:JenkinsCompare_atexit

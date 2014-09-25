@@ -106,25 +106,26 @@ if any(w=='p')
    %disp('Option 1')
 else
    ath=sqrt(pth);
-   y = zeros(1,2);
+   y = zeros(32,306);
    y=log(max(m*abs(f(norm(a):b,:)),ath));
-   %size(y)
    %disp('Option 2')
 end
 c=rdct(y).';
 nf=size(c,1);
 nc=nc+1;
 if p>nc
-   c(:,nc+1:end)=[];
+   newc = c(:,nc+1:end);
 elseif p<nc
-   c=[c zeros(nf,nc-p)];
+   newc =[c zeros(nf,nc-p)];
+else
+    newc = c;
 end
 if ~any(w=='0')
-   c(:,1)=[];
+   newc(:,1)=[];
    nc=nc-1;
 end
 if any(w=='E')
-   c=[log(max(sum(pw),pth)).' c];
+   newc=[log(max(sum(pw),pth)).' newc];
    nc=nc+1;
 end
 
@@ -134,31 +135,31 @@ if any(w=='D')
   vf=(4:-1:-4)/60;
   af=(1:-1:-1)/2;
   ww=ones(5,1);
-  cx=[c(ww,:); c; c(nf*ww,:)];
+  cx=[newc(ww,:); newc; newc(nf*ww,:)];
   vx=reshape(filter(vf,1,cx(:)),nf+10,nc);
   vx(1:8,:)=[];
   ax=reshape(filter(af,1,vx(:)),nf+2,nc);
   ax(1:2,:)=[];
   vx([1 nf+2],:)=[];
   if any(w=='d')
-     c=[c vx ax];
+     newc=[newc vx ax];
   else
-     c=[c ax];
+     newc=[newc ax];
   end
 elseif any(w=='d')
   vf=(4:-1:-4)/60;
   ww=ones(4,1);
-  cx=[c(ww,:); c; c(nf*ww,:)];
+  cx=[newc(ww,:); newc; newc(nf*ww,:)];
   vx=reshape(filter(vf,1,cx(:)),nf+8,nc);
   vx(1:8,:)=[];
-  c=[c vx];
+  newc=[newc vx];
 end
  
 if nargout<1
-   [nf,nc]=size(c);
+   [nf,nc]=size(newc);
    t=((0:nf-1)*inc+(n-1)/2)/fs;
    ci=(1:nc)-any(w=='0')-any(w=='E');
-   imh = imagesc(t,ci,c.');
+   imh = imagesc(t,ci,newc.');
    axis('xy');
    xlabel('Time (s)');
    ylabel('Mel-cepstrum coefficient');
