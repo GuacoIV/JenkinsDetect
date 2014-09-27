@@ -1,0 +1,111 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>RTW Report - mel2frq.c</title>
+<script language="JavaScript" type="text/javascript" src="rtwreport_utils.js"></script>
+</head>
+<body bgcolor="#eeeeee" text="#1122aa" onload="try {if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window.document); else local_onload();}} catch(err) {};">
+<p>
+<table border="0" cellspacing="0" cellpadding="6" width="100%%" height="100%%"><tr><td width="100%%" valign="top" bgcolor="#ffffff">
+<h4>File: <a href="../mel2frq.c" target="rtwreport_document_frame" id="linkToText_plain">mel2frq.c</a></h4>
+<pre id="RTWcode">
+<a name="1"><font color="#888888 "><i>    1   </i></font></a><font color="#117755"><i>/*</i></font>
+<a name="2"><font color="#888888 "><i>    2   </i></font></a><font color="#117755"><I> * File: mel2frq.c</i></font>
+<a name="3"><font color="#888888 "><i>    3   </i></font></a><font color="#117755"><I> *</i></font>
+<a name="4"><font color="#888888 "><i>    4   </i></font></a><font color="#117755"><I> * MATLAB Coder version            : 2.6</i></font>
+<a name="5"><font color="#888888 "><i>    5   </i></font></a><font color="#117755"><I> * C/C++ source code generated on  : 27-Sep-2014 00:07:32</i></font>
+<a name="6"><font color="#888888 "><i>    6   </i></font></a><font color="#117755"><I> */</i></font>
+<a name="7"><font color="#888888 "><i>    7   </i></font></a>
+<a name="8"><font color="#888888 "><i>    8   </i></font></a><font color="#117755"><i>/* Include files */</i></font>
+<a name="9"><font color="#888888 "><i>    9   </i></font></a><font color="#992211">#</font><font color="#992211"><b>include</b></font> <font color="#992211">&quot;rt_nonfinite.h&quot;</font>
+<a name="10"><font color="#888888 "><i>   10   </i></font></a><font color="#992211">#</font><font color="#992211"><b>include</b></font> <font color="#992211">&quot;JenkinsCompare.h&quot;</font>
+<a name="11"><font color="#888888 "><i>   11   </i></font></a><font color="#992211">#</font><font color="#992211"><b>include</b></font> <font color="#992211">&quot;mel2frq.h&quot;</font>
+<a name="12"><font color="#888888 "><i>   12   </i></font></a>
+<a name="13"><font color="#888888 "><i>   13   </i></font></a><font color="#117755"><i>/* Function Definitions */</i></font>
+<a name="14"><font color="#888888 "><i>   14   </i></font></a>
+<a name="15"><font color="#888888 "><i>   15   </i></font></a><font color="#117755"><i>/*</i></font>
+<a name="16"><font color="#888888 "><i>   16   </i></font></a><font color="#117755"><I> * MEL2FRQ  Convert Mel frequency scale to Hertz FRQ=(MEL)</i></font>
+<a name="17"><font color="#888888 "><i>   17   </i></font></a><font color="#117755"><I> *  frq = mel2frq(mel) converts a vector of Mel frequencies</i></font>
+<a name="18"><font color="#888888 "><i>   18   </i></font></a><font color="#117755"><I> *  to the corresponding real frequencies.</i></font>
+<a name="19"><font color="#888888 "><i>   19   </i></font></a><font color="#117755"><I> *    mr gives the corresponding gradients in Hz/mel.</i></font>
+<a name="20"><font color="#888888 "><i>   20   </i></font></a><font color="#117755"><I> *  The Mel scale corresponds to the perceived pitch of a tone</i></font>
+<a name="21"><font color="#888888 "><i>   21   </i></font></a><font color="#117755"><I> * Arguments    : const double mel[4]</i></font>
+<a name="22"><font color="#888888 "><i>   22   </i></font></a><font color="#117755"><I> *                double frq[4]</i></font>
+<a name="23"><font color="#888888 "><i>   23   </i></font></a><font color="#117755"><I> * Return Type  : void</i></font>
+<a name="24"><font color="#888888 "><i>   24   </i></font></a><font color="#117755"><I> */</i></font>
+<a name="25"><font color="#888888 "><i>   25   </i></font></a><font color="#112266"><b>void</b></font> <a name="fcn_mel2frq">mel2frq</a>(<font color="#112266"><b>const</b></font> <font color="#112266"><b>double</b></font> mel[4], <font color="#112266"><b>double</b></font> frq[4])
+<a name="26"><font color="#888888 "><i>   26   </i></font></a><b>{</b>
+<a name="27"><font color="#888888 "><i>   27   </i></font></a>  <font color="#112266"><b>int</b></font> i2;
+<a name="28"><font color="#888888 "><i>   28   </i></font></a>  <font color="#112266"><b>double</b></font> b_mel;
+<a name="29"><font color="#888888 "><i>   29   </i></font></a>
+<a name="30"><font color="#888888 "><i>   30   </i></font></a>  <font color="#117755"><i>/* 	The relationship between mel and frq is given by [1]: */</i></font>
+<a name="31"><font color="#888888 "><i>   31   </i></font></a>  <font color="#117755"><i>/*  */</i></font>
+<a name="32"><font color="#888888 "><i>   32   </i></font></a>  <font color="#117755"><i>/* 	m = ln(1 + f/700) * 1000 / ln(1+1000/700) */</i></font>
+<a name="33"><font color="#888888 "><i>   33   </i></font></a>  <font color="#117755"><i>/*  */</i></font>
+<a name="34"><font color="#888888 "><i>   34   </i></font></a>  <font color="#117755"><i>/*   	This means that m(1000) = 1000 */</i></font>
+<a name="35"><font color="#888888 "><i>   35   </i></font></a>  <font color="#117755"><i>/*  */</i></font>
+<a name="36"><font color="#888888 "><i>   36   </i></font></a>  <font color="#117755"><i>/* 	References: */</i></font>
+<a name="37"><font color="#888888 "><i>   37   </i></font></a>  <font color="#117755"><i>/*  */</i></font>
+<a name="38"><font color="#888888 "><i>   38   </i></font></a>  <font color="#117755"><i>/*      [1] J. Makhoul and L. Cosell. "Lpcw: An lpc vocoder with */</i></font>
+<a name="39"><font color="#888888 "><i>   39   </i></font></a>  <font color="#117755"><i>/*          linear predictive spectral warping", In Proc IEEE Intl */</i></font>
+<a name="40"><font color="#888888 "><i>   40   </i></font></a>  <font color="#117755"><i>/*          Conf Acoustics, Speech and Signal Processing, volume 1, */</i></font>
+<a name="41"><font color="#888888 "><i>   41   </i></font></a>  <font color="#117755"><i>/*          pages 466–469, 1976. doi: 10.1109/ICASSP.1976.1170013. */</i></font>
+<a name="42"><font color="#888888 "><i>   42   </i></font></a>  <font color="#117755"><i>/* 	  [2] S. S. Stevens & J. Volkman "The relation of pitch to */</i></font>
+<a name="43"><font color="#888888 "><i>   43   </i></font></a>  <font color="#117755"><i>/* 		  frequency", American J of Psychology, V 53, p329 1940 */</i></font>
+<a name="44"><font color="#888888 "><i>   44   </i></font></a>  <font color="#117755"><i>/* 	  [3] C. G. M. Fant, "Acoustic description & classification */</i></font>
+<a name="45"><font color="#888888 "><i>   45   </i></font></a>  <font color="#117755"><i>/* 		  of phonetic units", Ericsson Tchnics, No 1 1959 */</i></font>
+<a name="46"><font color="#888888 "><i>   46   </i></font></a>  <font color="#117755"><i>/* 		  (reprinted in "Speech Sounds & Features", MIT Press 1973) */</i></font>
+<a name="47"><font color="#888888 "><i>   47   </i></font></a>  <font color="#117755"><i>/* 	  [4] S. B. Davis & P. Mermelstein, "Comparison of parametric */</i></font>
+<a name="48"><font color="#888888 "><i>   48   </i></font></a>  <font color="#117755"><i>/* 		  representations for monosyllabic word recognition in */</i></font>
+<a name="49"><font color="#888888 "><i>   49   </i></font></a>  <font color="#117755"><i>/* 		  continuously spoken sentences", IEEE ASSP, V 28, */</i></font>
+<a name="50"><font color="#888888 "><i>   50   </i></font></a>  <font color="#117755"><i>/* 		  pp 357-366 Aug 1980 */</i></font>
+<a name="51"><font color="#888888 "><i>   51   </i></font></a>  <font color="#117755"><i>/* 	  [5] J. R. Deller Jr, J. G. Proakis, J. H. L. Hansen, */</i></font>
+<a name="52"><font color="#888888 "><i>   52   </i></font></a>  <font color="#117755"><i>/* 		  "Discrete-Time Processing of Speech Signals", p380, */</i></font>
+<a name="53"><font color="#888888 "><i>   53   </i></font></a>  <font color="#117755"><i>/* 		  Macmillan 1993 */</i></font>
+<a name="54"><font color="#888888 "><i>   54   </i></font></a>  <font color="#117755"><i>/*       Copyright (C) Mike Brookes 1998 */</i></font>
+<a name="55"><font color="#888888 "><i>   55   </i></font></a>  <font color="#117755"><i>/*       Version: $Id: mel2frq.m 1874 2012-05-25 15:41:53Z dmb $ */</i></font>
+<a name="56"><font color="#888888 "><i>   56   </i></font></a>  <font color="#117755"><i>/*  */</i></font>
+<a name="57"><font color="#888888 "><i>   57   </i></font></a>  <font color="#117755"><i>/*    VOICEBOX is a MATLAB toolbox for speech processing. */</i></font>
+<a name="58"><font color="#888888 "><i>   58   </i></font></a>  <font color="#117755"><i>/*    Home page: http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html */</i></font>
+<a name="59"><font color="#888888 "><i>   59   </i></font></a>  <font color="#117755"><i>/*  */</i></font>
+<a name="60"><font color="#888888 "><i>   60   </i></font></a>  <font color="#117755"><i>/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */</i></font>
+<a name="61"><font color="#888888 "><i>   61   </i></font></a>  <font color="#117755"><i>/*    This program is free software; you can redistribute it and/or modify */</i></font>
+<a name="62"><font color="#888888 "><i>   62   </i></font></a>  <font color="#117755"><i>/*    it under the terms of the GNU General Public License as published by */</i></font>
+<a name="63"><font color="#888888 "><i>   63   </i></font></a>  <font color="#117755"><i>/*    the Free Software Foundation; either version 2 of the License, or */</i></font>
+<a name="64"><font color="#888888 "><i>   64   </i></font></a>  <font color="#117755"><i>/*    (at your option) any later version. */</i></font>
+<a name="65"><font color="#888888 "><i>   65   </i></font></a>  <font color="#117755"><i>/*  */</i></font>
+<a name="66"><font color="#888888 "><i>   66   </i></font></a>  <font color="#117755"><i>/*    This program is distributed in the hope that it will be useful, */</i></font>
+<a name="67"><font color="#888888 "><i>   67   </i></font></a>  <font color="#117755"><i>/*    but WITHOUT ANY WARRANTY; without even the implied warranty of */</i></font>
+<a name="68"><font color="#888888 "><i>   68   </i></font></a>  <font color="#117755"><i>/*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the */</i></font>
+<a name="69"><font color="#888888 "><i>   69   </i></font></a>  <font color="#117755"><i>/*    GNU General Public License for more details. */</i></font>
+<a name="70"><font color="#888888 "><i>   70   </i></font></a>  <font color="#117755"><i>/*  */</i></font>
+<a name="71"><font color="#888888 "><i>   71   </i></font></a>  <font color="#117755"><i>/*    You can obtain a copy of the GNU General Public License from */</i></font>
+<a name="72"><font color="#888888 "><i>   72   </i></font></a>  <font color="#117755"><i>/*    http://www.gnu.org/copyleft/gpl.html or by writing to */</i></font>
+<a name="73"><font color="#888888 "><i>   73   </i></font></a>  <font color="#117755"><i>/*    Free Software Foundation, Inc.,675 Mass Ave, Cambridge, MA 02139, USA. */</i></font>
+<a name="74"><font color="#888888 "><i>   74   </i></font></a>  <font color="#117755"><i>/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */</i></font>
+<a name="75"><font color="#888888 "><i>   75   </i></font></a>  <font color="#112266"><b>for</b></font> (i2 = 0; i2 &lt; 4; i2++) <b>{</b>
+<a name="76"><font color="#888888 "><i>   76   </i></font></a>    <font color="#112266"><b>if</b></font> (mel[i2] &lt; 0.0) <b>{</b>
+<a name="77"><font color="#888888 "><i>   77   </i></font></a>      b_mel = -1.0;
+<a name="78"><font color="#888888 "><i>   78   </i></font></a>    <b>}</b> <font color="#112266"><b>else</b></font> <font color="#112266"><b>if</b></font> (mel[i2] &gt; 0.0) <b>{</b>
+<a name="79"><font color="#888888 "><i>   79   </i></font></a>      b_mel = 1.0;
+<a name="80"><font color="#888888 "><i>   80   </i></font></a>    <b>}</b> <font color="#112266"><b>else</b></font> <font color="#112266"><b>if</b></font> (mel[i2] == 0.0) <b>{</b>
+<a name="81"><font color="#888888 "><i>   81   </i></font></a>      b_mel = 0.0;
+<a name="82"><font color="#888888 "><i>   82   </i></font></a>    <b>}</b> <font color="#112266"><b>else</b></font> <b>{</b>
+<a name="83"><font color="#888888 "><i>   83   </i></font></a>      b_mel = mel[i2];
+<a name="84"><font color="#888888 "><i>   84   </i></font></a>    <b>}</b>
+<a name="85"><font color="#888888 "><i>   85   </i></font></a>
+<a name="86"><font color="#888888 "><i>   86   </i></font></a>    frq[i2] = 700.0 * b_mel * (exp(fabs(mel[i2]) / 1127.0104803341571) - 1.0);
+<a name="87"><font color="#888888 "><i>   87   </i></font></a>  <b>}</b>
+<a name="88"><font color="#888888 "><i>   88   </i></font></a><b>}</b>
+<a name="89"><font color="#888888 "><i>   89   </i></font></a>
+<a name="90"><font color="#888888 "><i>   90   </i></font></a><font color="#117755"><i>/*</i></font>
+<a name="91"><font color="#888888 "><i>   91   </i></font></a><font color="#117755"><I> * File trailer for mel2frq.c</i></font>
+<a name="92"><font color="#888888 "><i>   92   </i></font></a><font color="#117755"><I> *</i></font>
+<a name="93"><font color="#888888 "><i>   93   </i></font></a><font color="#117755"><I> * [EOF]</i></font>
+<a name="94"><font color="#888888 "><i>   94   </i></font></a><font color="#117755"><I> */</i></font>
+<a name="95"><font color="#888888 "><i>   95   </i></font></a></pre>
+</td></tr></table>
+</p>
+</body>
+</html>
