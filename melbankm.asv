@@ -242,29 +242,22 @@ end
 % sort out the output argument options
 %
 if nargout > 2
-    r;
-    c;
-    v;
     rows = max(r);
     columns = max(c);
     x = zeros(rows, columns);
     rSize = size(r);
     for index = 1:rSize(2)
-        r(index)
-        disp('comma')
-        c(index)
-        disp('is')
-        v(index)
-        x(r(1, index), c(1, index)) = v(index);
+        x(r(index), c(index)) = v(index);
     end
     %x
-    x=sparse(r,c,v);
+    %x=sparse(r,c,v)
     if nargout == 3     % if exactly three output arguments, then
         mc=mn;          % delete mc output for legacy code compatibility
         mn=mx;
     end
 else
-    x=sparse(r,c+mn-1,v,p,1+fn2);
+    %x=sparse(r,c+mn-1,v,p,1+fn2);
+    x = s
 end
 if any(w=='u')
     sx=sum(x,2);

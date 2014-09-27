@@ -249,14 +249,19 @@ if nargout > 2
     for index = 1:rSize(2)
         x(r(index), c(index)) = v(index);
     end
-    %x
-    %x=sparse(r,c,v)
+    %Was x=sparse(r,c,v)
     if nargout == 3     % if exactly three output arguments, then
         mc=mn;          % delete mc output for legacy code compatibility
         mn=mx;
     end
 else
-    x=sparse(r,c+mn-1,v,p,1+fn2);
+    %Was x=sparse(r,c+mn-1,v,p,1+fn2);
+    x = zeros(p, 1 + fn2);
+    rSize = size(r);
+    cPlusMN = c + mn - 1;
+    for index = 1:rSize(2)
+        x(r(index), cPlusMN(index)) = v(index);
+    end
 end
 if any(w=='u')
     sx=sum(x,2);
