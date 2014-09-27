@@ -22,7 +22,7 @@
 
 /* Function Declarations */
 extern void JenkinsCompare(JenkinsCompareStackData *SD, const emlrtStack *sp,
-  const real_T x[78596], real_T sampleRate, real_T y[9792]);
+  const real_T x[78596], real_T sampleRate, emxArray_real_T *y);
 
 #endif
 

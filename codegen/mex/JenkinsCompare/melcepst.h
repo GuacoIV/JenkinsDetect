@@ -22,7 +22,7 @@
 
 /* Function Declarations */
 extern void melcepst(JenkinsCompareStackData *SD, const emlrtStack *sp, const
-                     real_T s[78596], real_T fs, real_T p, real_T c[9792]);
+                     real_T s[78596], real_T fs, real_T p, emxArray_real_T *c);
 
 #endif
 

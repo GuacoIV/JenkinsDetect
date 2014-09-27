@@ -22,8 +22,8 @@ typedef struct
     } f0;
     struct
     {
-        real_T s[156672];
-        creal_T dcv0[9792];
+        real_T dv0[156672];
+        real_T dv2[156672];
     } f1;
 } JenkinsCompareStackData;
 #endif /*typedef_JenkinsCompareStackData*/

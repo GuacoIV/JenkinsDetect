@@ -9,146 +9,146 @@
 #include "rt_nonfinite.h"
 #include "JenkinsCompare.h"
 #include "rfft.h"
+#include "fft.h"
 #include "norm.h"
 #include "JenkinsCompare_emxutil.h"
 #include "eml_error.h"
 #include "melcepst.h"
 #include "eml_int_forloop_overflow_check.h"
 #include "prod.h"
-#include "fft.h"
 #include "JenkinsCompare_mexutil.h"
 #include "JenkinsCompare_data.h"
 
 /* Variable Definitions */
-static emlrtRSInfo i_emlrtRSI = { 50, "rfft",
+static emlrtRSInfo j_emlrtRSI = { 49, "rfft",
   "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\rfft.m"
 };
 
-static emlrtRSInfo j_emlrtRSI = { 53, "rfft",
+static emlrtRSInfo k_emlrtRSI = { 50, "rfft",
   "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\rfft.m"
 };
 
-static emlrtRSInfo k_emlrtRSI = { 55, "rfft",
+static emlrtRSInfo l_emlrtRSI = { 53, "rfft",
   "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\rfft.m"
 };
 
-static emlrtRSInfo q_emlrtRSI = { 47, "reshape",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
-};
-
-static emlrtRSInfo r_emlrtRSI = { 16, "reshape",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
-};
-
-static emlrtRSInfo s_emlrtRSI = { 120, "reshape",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
-};
-
-static emlrtRSInfo t_emlrtRSI = { 69, "reshape",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
-};
-
-static emlrtRSInfo w_emlrtRSI = { 34, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtRSInfo x_emlrtRSI = { 35, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtRSInfo y_emlrtRSI = { 244, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtRSInfo ab_emlrtRSI = { 246, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtRSInfo bb_emlrtRSI = { 261, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtRSInfo cb_emlrtRSI = { 266, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtRSInfo db_emlrtRSI = { 160, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtRSInfo eb_emlrtRSI = { 103, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtRSInfo fb_emlrtRSI = { 22, "reshape",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
-};
-
-static emlrtRSInfo gb_emlrtRSI = { 54, "reshape",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
-};
-
-static emlrtMCInfo j_emlrtMCI = { 53, 5, "reshape",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
-};
-
-static emlrtMCInfo k_emlrtMCI = { 52, 15, "reshape",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
-};
-
-static emlrtMCInfo l_emlrtMCI = { 51, 13, "eml_assert_valid_size_arg",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
-};
-
-static emlrtMCInfo m_emlrtMCI = { 50, 23, "eml_assert_valid_size_arg",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
-};
-
-static emlrtMCInfo n_emlrtMCI = { 57, 5, "eml_assert_valid_size_arg",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
-};
-
-static emlrtMCInfo o_emlrtMCI = { 56, 15, "eml_assert_valid_size_arg",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
-};
-
-static emlrtMCInfo p_emlrtMCI = { 53, 9, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtMCInfo q_emlrtMCI = { 52, 19, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtMCInfo r_emlrtMCI = { 253, 1, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtMCInfo s_emlrtMCI = { 42, 9, "eml_assert_valid_size_arg",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
-};
-
-static emlrtMCInfo t_emlrtMCI = { 41, 19, "eml_assert_valid_size_arg",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
-};
-
-static emlrtRTEInfo g_emlrtRTEI = { 1, 12, "rfft",
+static emlrtRSInfo m_emlrtRSI = { 55, "rfft",
   "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\rfft.m"
 };
 
-static emlrtRTEInfo h_emlrtRTEI = { 51, 1, "reshape",
+static emlrtRSInfo v_emlrtRSI = { 47, "reshape",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
 };
 
-static emlrtRTEInfo i_emlrtRTEI = { 255, 1, "eml_null_assignment",
+static emlrtRSInfo w_emlrtRSI = { 16, "reshape",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
+};
+
+static emlrtRSInfo x_emlrtRSI = { 120, "reshape",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
+};
+
+static emlrtRSInfo y_emlrtRSI = { 69, "reshape",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
+};
+
+static emlrtRSInfo fb_emlrtRSI = { 34, "eml_null_assignment",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
 };
 
-static emlrtRTEInfo j_emlrtRTEI = { 1, 10, "rfft",
+static emlrtRSInfo gb_emlrtRSI = { 35, "eml_null_assignment",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
+};
+
+static emlrtRSInfo hb_emlrtRSI = { 244, "eml_null_assignment",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
+};
+
+static emlrtRSInfo ib_emlrtRSI = { 246, "eml_null_assignment",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
+};
+
+static emlrtRSInfo jb_emlrtRSI = { 261, "eml_null_assignment",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
+};
+
+static emlrtRSInfo kb_emlrtRSI = { 266, "eml_null_assignment",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
+};
+
+static emlrtRSInfo lb_emlrtRSI = { 160, "eml_null_assignment",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
+};
+
+static emlrtRSInfo mb_emlrtRSI = { 103, "eml_null_assignment",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
+};
+
+static emlrtRSInfo nb_emlrtRSI = { 22, "reshape",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
+};
+
+static emlrtRSInfo ob_emlrtRSI = { 54, "reshape",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
+};
+
+static emlrtMCInfo g_emlrtMCI = { 53, 5, "reshape",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
+};
+
+static emlrtMCInfo h_emlrtMCI = { 52, 15, "reshape",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
+};
+
+static emlrtMCInfo i_emlrtMCI = { 51, 13, "eml_assert_valid_size_arg",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
+};
+
+static emlrtMCInfo j_emlrtMCI = { 50, 23, "eml_assert_valid_size_arg",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
+};
+
+static emlrtMCInfo k_emlrtMCI = { 57, 5, "eml_assert_valid_size_arg",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
+};
+
+static emlrtMCInfo l_emlrtMCI = { 56, 15, "eml_assert_valid_size_arg",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
+};
+
+static emlrtMCInfo o_emlrtMCI = { 253, 1, "eml_null_assignment",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
+};
+
+static emlrtMCInfo p_emlrtMCI = { 42, 9, "eml_assert_valid_size_arg",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
+};
+
+static emlrtMCInfo q_emlrtMCI = { 41, 19, "eml_assert_valid_size_arg",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
+};
+
+static emlrtRTEInfo f_emlrtRTEI = { 1, 12, "rfft",
   "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\rfft.m"
 };
 
-static emlrtBCInfo d_emlrtBCI = { 1, 2, 50, 56, "s", "rfft",
+static emlrtRTEInfo g_emlrtRTEI = { 51, 1, "reshape",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
+};
+
+static emlrtRTEInfo h_emlrtRTEI = { 255, 1, "eml_null_assignment",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
+};
+
+static emlrtRTEInfo i_emlrtRTEI = { 1, 10, "rfft",
+  "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\rfft.m"
+};
+
+static emlrtRTEInfo j_emlrtRTEI = { 155, 14, "eml_null_assignment",
+  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
+};
+
+static emlrtBCInfo f_emlrtBCI = { 1, 2, 50, 56, "s", "rfft",
   "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\rfft.m",
   0 };
 
@@ -156,7 +156,7 @@ static emlrtDCInfo d_emlrtDCI = { 50, 56, "rfft",
   "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\rfft.m",
   1 };
 
-static emlrtBCInfo e_emlrtBCI = { 1, 2, 50, 23, "s", "rfft",
+static emlrtBCInfo g_emlrtBCI = { 1, 2, 50, 23, "s", "rfft",
   "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\rfft.m",
   0 };
 
@@ -168,47 +168,39 @@ static emlrtDCInfo f_emlrtDCI = { 255, 48, "eml_null_assignment",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m",
   4 };
 
-static emlrtRSInfo tc_emlrtRSI = { 56, "eml_assert_valid_size_arg",
+static emlrtRSInfo ae_emlrtRSI = { 56, "eml_assert_valid_size_arg",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
 };
 
-static emlrtRSInfo uc_emlrtRSI = { 41, "eml_assert_valid_size_arg",
+static emlrtRSInfo be_emlrtRSI = { 41, "eml_assert_valid_size_arg",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
 };
 
-static emlrtRSInfo vc_emlrtRSI = { 50, "eml_assert_valid_size_arg",
+static emlrtRSInfo ce_emlrtRSI = { 50, "eml_assert_valid_size_arg",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
 };
 
-static emlrtRSInfo ad_emlrtRSI = { 52, "reshape",
+static emlrtRSInfo ge_emlrtRSI = { 52, "reshape",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
 };
 
-static emlrtRSInfo bd_emlrtRSI = { 253, "eml_null_assignment",
+static emlrtRSInfo he_emlrtRSI = { 253, "eml_null_assignment",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
 };
 
-static emlrtRSInfo cd_emlrtRSI = { 52, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtRSInfo jd_emlrtRSI = { 57, "eml_assert_valid_size_arg",
+static emlrtRSInfo te_emlrtRSI = { 57, "eml_assert_valid_size_arg",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
 };
 
-static emlrtRSInfo md_emlrtRSI = { 53, "reshape",
+static emlrtRSInfo we_emlrtRSI = { 53, "reshape",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\elmat\\reshape.m"
 };
 
-static emlrtRSInfo nd_emlrtRSI = { 53, "eml_null_assignment",
-  "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_null_assignment.m"
-};
-
-static emlrtRSInfo qd_emlrtRSI = { 42, "eml_assert_valid_size_arg",
+static emlrtRSInfo bf_emlrtRSI = { 42, "eml_assert_valid_size_arg",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
 };
 
-static emlrtRSInfo rd_emlrtRSI = { 51, "eml_assert_valid_size_arg",
+static emlrtRSInfo cf_emlrtRSI = { 51, "eml_assert_valid_size_arg",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\eml\\eml_assert_valid_size_arg.m"
 };
 
@@ -218,6 +210,9 @@ static void b_eml_assert_valid_size_arg(const emlrtStack *sp, const real_T
 static const mxArray *c_message(const emlrtStack *sp, const mxArray *b, const
   mxArray *c, const mxArray *d, emlrtMCInfo *location);
 static void eml_assert_valid_size_arg(const emlrtStack *sp, real_T varargin_1);
+static void make_bitarray(const emlrtStack *sp, real_T n, const emxArray_real_T *
+  idx, emxArray_boolean_T *b);
+static int32_T num_true(const emlrtStack *sp, const emxArray_boolean_T *b);
 
 /* Function Definitions */
 static void b_eml_assert_valid_size_arg(const emlrtStack *sp, const real_T
@@ -229,11 +224,11 @@ static void b_eml_assert_valid_size_arg(const emlrtStack *sp, const real_T
   boolean_T guard1 = false;
   int32_T exitg1;
   const mxArray *y;
-  static const int32_T iv13[2] = { 1, 57 };
+  static const int32_T iv16[2] = { 1, 57 };
 
-  const mxArray *m6;
-  char_T cv21[57];
-  static const char_T cv22[57] = { 'C', 'o', 'd', 'e', 'r', ':', 't', 'o', 'o',
+  const mxArray *m5;
+  char_T cv27[57];
+  static const char_T cv28[57] = { 'C', 'o', 'd', 'e', 'r', ':', 't', 'o', 'o',
     'l', 'b', 'o', 'x', ':', 'e', 'm', 'l', '_', 'a', 's', 's', 'e', 'r', 't',
     '_', 'v', 'a', 'l', 'i', 'd', '_', 's', 'i', 'z', 'e', '_', 'a', 'r', 'g',
     '_', 'i', 'n', 'v', 'a', 'l', 'i', 'd', 'S', 'i', 'z', 'e', 'V', 'e', 'c',
@@ -243,10 +238,10 @@ static void b_eml_assert_valid_size_arg(const emlrtStack *sp, const real_T
   const mxArray *c_y;
   real_T n;
   const mxArray *d_y;
-  static const int32_T iv14[2] = { 1, 21 };
+  static const int32_T iv17[2] = { 1, 21 };
 
-  char_T cv23[21];
-  static const char_T cv24[21] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
+  char_T cv29[21];
+  static const char_T cv30[21] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
     'L', 'A', 'B', ':', 'p', 'm', 'a', 'x', 's', 'i', 'z', 'e' };
 
   emlrtStack st;
@@ -307,24 +302,24 @@ static void b_eml_assert_valid_size_arg(const emlrtStack *sp, const real_T
   if (p) {
   } else {
     y = NULL;
-    m6 = emlrtCreateCharArray(2, iv13);
+    m5 = emlrtCreateCharArray(2, iv16);
     for (i = 0; i < 57; i++) {
-      cv21[i] = cv22[i];
+      cv27[i] = cv28[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 57, m6, cv21);
-    emlrtAssign(&y, m6);
+    emlrtInitCharArrayR2013a(sp, 57, m5, cv27);
+    emlrtAssign(&y, m5);
     b_y = NULL;
-    m6 = emlrtCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
-    *(int32_T *)mxGetData(m6) = MIN_int32_T;
-    emlrtAssign(&b_y, m6);
+    m5 = emlrtCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
+    *(int32_T *)mxGetData(m5) = MIN_int32_T;
+    emlrtAssign(&b_y, m5);
     c_y = NULL;
-    m6 = emlrtCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
-    *(int32_T *)mxGetData(m6) = MAX_int32_T;
-    emlrtAssign(&c_y, m6);
-    st.site = &uc_emlrtRSI;
-    b_st.site = &qd_emlrtRSI;
-    error(&st, c_message(&b_st, y, b_y, c_y, &s_emlrtMCI), &t_emlrtMCI);
+    m5 = emlrtCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
+    *(int32_T *)mxGetData(m5) = MAX_int32_T;
+    emlrtAssign(&c_y, m5);
+    st.site = &be_emlrtRSI;
+    b_st.site = &bf_emlrtRSI;
+    error(&st, c_message(&b_st, y, b_y, c_y, &p_emlrtMCI), &q_emlrtMCI);
   }
 
   n = 1.0;
@@ -335,16 +330,16 @@ static void b_eml_assert_valid_size_arg(const emlrtStack *sp, const real_T
   if (2.147483647E+9 >= n) {
   } else {
     d_y = NULL;
-    m6 = emlrtCreateCharArray(2, iv14);
+    m5 = emlrtCreateCharArray(2, iv17);
     for (i = 0; i < 21; i++) {
-      cv23[i] = cv24[i];
+      cv29[i] = cv30[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 21, m6, cv23);
-    emlrtAssign(&d_y, m6);
-    st.site = &tc_emlrtRSI;
-    b_st.site = &jd_emlrtRSI;
-    error(&st, b_message(&b_st, d_y, &n_emlrtMCI), &o_emlrtMCI);
+    emlrtInitCharArrayR2013a(sp, 21, m5, cv29);
+    emlrtAssign(&d_y, m5);
+    st.site = &ae_emlrtRSI;
+    b_st.site = &te_emlrtRSI;
+    error(&st, b_message(&b_st, d_y, &k_emlrtMCI), &l_emlrtMCI);
   }
 }
 
@@ -352,11 +347,11 @@ static const mxArray *c_message(const emlrtStack *sp, const mxArray *b, const
   mxArray *c, const mxArray *d, emlrtMCInfo *location)
 {
   const mxArray *pArrays[3];
-  const mxArray *m16;
+  const mxArray *m12;
   pArrays[0] = b;
   pArrays[1] = c;
   pArrays[2] = d;
-  return emlrtCallMATLABR2012b(sp, 1, &m16, 3, pArrays, "message", true,
+  return emlrtCallMATLABR2012b(sp, 1, &m12, 3, pArrays, "message", true,
     location);
 }
 
@@ -365,22 +360,22 @@ static void eml_assert_valid_size_arg(const emlrtStack *sp, real_T varargin_1)
   boolean_T p;
   boolean_T guard1 = false;
   const mxArray *y;
-  static const int32_T iv11[2] = { 1, 28 };
+  static const int32_T iv14[2] = { 1, 28 };
 
-  const mxArray *m5;
-  char_T cv17[28];
+  const mxArray *m4;
+  char_T cv23[28];
   int32_T i;
-  static const char_T cv18[28] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
+  static const char_T cv24[28] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
     'L', 'A', 'B', ':', 'N', 'o', 'n', 'I', 'n', 't', 'e', 'g', 'e', 'r', 'I',
     'n', 'p', 'u', 't' };
 
   const mxArray *b_y;
   const mxArray *c_y;
   const mxArray *d_y;
-  static const int32_T iv12[2] = { 1, 21 };
+  static const int32_T iv15[2] = { 1, 21 };
 
-  char_T cv19[21];
-  static const char_T cv20[21] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
+  char_T cv25[21];
+  static const char_T cv26[21] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
     'L', 'A', 'B', ':', 'p', 'm', 'a', 'x', 's', 'i', 'z', 'e' };
 
   emlrtStack st;
@@ -419,40 +414,110 @@ static void eml_assert_valid_size_arg(const emlrtStack *sp, real_T varargin_1)
   if (p) {
   } else {
     y = NULL;
-    m5 = emlrtCreateCharArray(2, iv11);
+    m4 = emlrtCreateCharArray(2, iv14);
     for (i = 0; i < 28; i++) {
-      cv17[i] = cv18[i];
+      cv23[i] = cv24[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 28, m5, cv17);
-    emlrtAssign(&y, m5);
+    emlrtInitCharArrayR2013a(sp, 28, m4, cv23);
+    emlrtAssign(&y, m4);
     b_y = NULL;
-    m5 = emlrtCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
-    *(int32_T *)mxGetData(m5) = MIN_int32_T;
-    emlrtAssign(&b_y, m5);
+    m4 = emlrtCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
+    *(int32_T *)mxGetData(m4) = MIN_int32_T;
+    emlrtAssign(&b_y, m4);
     c_y = NULL;
-    m5 = emlrtCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
-    *(int32_T *)mxGetData(m5) = MAX_int32_T;
-    emlrtAssign(&c_y, m5);
-    st.site = &vc_emlrtRSI;
-    b_st.site = &rd_emlrtRSI;
-    error(&st, c_message(&b_st, y, b_y, c_y, &l_emlrtMCI), &m_emlrtMCI);
+    m4 = emlrtCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
+    *(int32_T *)mxGetData(m4) = MAX_int32_T;
+    emlrtAssign(&c_y, m4);
+    st.site = &ce_emlrtRSI;
+    b_st.site = &cf_emlrtRSI;
+    error(&st, c_message(&b_st, y, b_y, c_y, &i_emlrtMCI), &j_emlrtMCI);
   }
 
   if (2.147483647E+9 >= varargin_1) {
   } else {
     d_y = NULL;
-    m5 = emlrtCreateCharArray(2, iv12);
+    m4 = emlrtCreateCharArray(2, iv15);
     for (i = 0; i < 21; i++) {
-      cv19[i] = cv20[i];
+      cv25[i] = cv26[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 21, m5, cv19);
-    emlrtAssign(&d_y, m5);
-    st.site = &tc_emlrtRSI;
-    b_st.site = &jd_emlrtRSI;
-    error(&st, b_message(&b_st, d_y, &n_emlrtMCI), &o_emlrtMCI);
+    emlrtInitCharArrayR2013a(sp, 21, m4, cv25);
+    emlrtAssign(&d_y, m4);
+    st.site = &ae_emlrtRSI;
+    b_st.site = &te_emlrtRSI;
+    error(&st, b_message(&b_st, d_y, &k_emlrtMCI), &l_emlrtMCI);
   }
+}
+
+static void make_bitarray(const emlrtStack *sp, real_T n, const emxArray_real_T *
+  idx, emxArray_boolean_T *b)
+{
+  int32_T k;
+  int32_T loop_ub;
+  boolean_T overflow;
+  emlrtStack st;
+  emlrtStack b_st;
+  st.prev = sp;
+  st.tls = sp->tls;
+  b_st.prev = &st;
+  b_st.tls = st.tls;
+  k = b->size[0] * b->size[1];
+  b->size[0] = 1;
+  b->size[1] = (int32_T)n;
+  emxEnsureCapacity(sp, (emxArray__common *)b, k, (int32_T)sizeof(boolean_T),
+                    &j_emlrtRTEI);
+  loop_ub = (int32_T)n;
+  for (k = 0; k < loop_ub; k++) {
+    b->data[k] = false;
+  }
+
+  st.site = &lb_emlrtRSI;
+  if (1 > idx->size[1]) {
+    overflow = false;
+  } else {
+    overflow = (idx->size[1] > 2147483646);
+  }
+
+  if (overflow) {
+    b_st.site = &q_emlrtRSI;
+    check_forloop_overflow_error(&b_st);
+  }
+
+  for (k = 1; k <= idx->size[1]; k++) {
+    b->data[(int32_T)idx->data[k - 1] - 1] = true;
+  }
+}
+
+static int32_T num_true(const emlrtStack *sp, const emxArray_boolean_T *b)
+{
+  int32_T n;
+  boolean_T overflow;
+  int32_T k;
+  emlrtStack st;
+  emlrtStack b_st;
+  st.prev = sp;
+  st.tls = sp->tls;
+  b_st.prev = &st;
+  b_st.tls = st.tls;
+  n = 0;
+  st.site = &mb_emlrtRSI;
+  if (1 > b->size[1]) {
+    overflow = false;
+  } else {
+    overflow = (b->size[1] > 2147483646);
+  }
+
+  if (overflow) {
+    b_st.site = &q_emlrtRSI;
+    check_forloop_overflow_error(&b_st);
+  }
+
+  for (k = 1; k <= b->size[1]; k++) {
+    n += b->data[k - 1];
+  }
+
+  return n;
 }
 
 void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
@@ -472,12 +537,12 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   real_T varargin_3;
   emxArray_creal_T *b_y;
   const mxArray *c_y;
-  static const int32_T iv4[2] = { 1, 40 };
+  static const int32_T iv7[2] = { 1, 40 };
 
-  const mxArray *m2;
-  char_T cv5[40];
+  const mxArray *m1;
+  char_T cv11[40];
   int32_T i;
-  static const char_T cv6[40] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
+  static const char_T cv12[40] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
     'L', 'A', 'B', ':', 'g', 'e', 't', 'R', 'e', 's', 'h', 'a', 'p', 'e', 'D',
     'i', 'm', 's', '_', 'n', 'o', 't', 'S', 'a', 'm', 'e', 'N', 'u', 'm', 'e',
     'l' };
@@ -489,14 +554,17 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   boolean_T overflow;
   boolean_T exitg1;
   const mxArray *e_y;
-  static const int32_T iv5[2] = { 1, 31 };
+  static const int32_T iv8[2] = { 1, 31 };
 
-  char_T cv7[31];
-  static const char_T cv8[31] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
+  char_T cv13[31];
+  static const char_T cv14[31] = { 'C', 'o', 'd', 'e', 'r', ':', 'M', 'A', 'T',
     'L', 'A', 'B', ':', 's', 'u', 'b', 's', 'd', 'e', 'l', 'd', 'i', 'm', 'm',
     'i', 's', 'm', 'a', 't', 'c', 'h' };
 
+  emxArray_boolean_T *r2;
+  int32_T b_size[2];
   boolean_T b_data[512];
+  emxArray_boolean_T b_b_data;
   int32_T sz[3];
   const mxArray *f_y;
   emxArray_creal_T *g_y;
@@ -506,7 +574,7 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   int16_T b_sz[2];
   uint32_T b_varargin_1[3];
   const mxArray *h_y;
-  static const int32_T iv6[2] = { 1, 40 };
+  static const int32_T iv9[2] = { 1, 40 };
 
   boolean_T b2;
   emlrtStack st;
@@ -515,7 +583,6 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   emlrtStack d_st;
   emlrtStack e_st;
   emlrtStack f_st;
-  emlrtStack g_st;
   st.prev = sp;
   st.tls = sp->tls;
   b_st.prev = &st;
@@ -528,8 +595,6 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   e_st.tls = st.tls;
   f_st.prev = &b_st;
   f_st.tls = b_st.tls;
-  g_st.prev = &d_st;
-  g_st.tls = d_st.tls;
   emlrtHeapReferenceStackEnterFcnR2012b(sp);
 
   /* RFFT     Calculate the DFT of real data Y=(X,N,D) */
@@ -573,24 +638,25 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
     j = 1;
   }
 
+  st.site = &j_emlrtRSI;
   fft(x, SD->f0.y);
-  st.site = &i_emlrtRSI;
+  st.site = &k_emlrtRSI;
   varargin_1 = norm(d_data, d_size) - 1.0;
   if (1.0 > varargin_1) {
     ypagesize = 0;
   } else {
     j = (int32_T)emlrtIntegerCheckFastR2012b(varargin_1, &e_emlrtDCI, sp);
-    ypagesize = emlrtDynamicBoundsCheckFastR2012b(j, 1, 2, &e_emlrtBCI, sp);
+    ypagesize = emlrtDynamicBoundsCheckFastR2012b(j, 1, 2, &g_emlrtBCI, sp);
   }
 
-  st.site = &i_emlrtRSI;
+  st.site = &k_emlrtRSI;
   varargin_1 = norm(d_data, d_size) + 1.0;
   if (varargin_1 > 2.0) {
     j = 0;
     maxdimlen = -1;
   } else {
     j = (int32_T)emlrtIntegerCheckFastR2012b(varargin_1, &d_emlrtDCI, sp);
-    j = emlrtDynamicBoundsCheckFastR2012b(j, 1, 2, &d_emlrtBCI, sp) - 1;
+    j = emlrtDynamicBoundsCheckFastR2012b(j, 1, 2, &f_emlrtBCI, sp) - 1;
     maxdimlen = 1;
   }
 
@@ -600,7 +666,7 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
     tmp_data[iy0] = 512.0 + -206.0 * (real_T)iy0;
   }
 
-  st.site = &i_emlrtRSI;
+  st.site = &k_emlrtRSI;
   varargin_1 = prod(&st, tmp_data, tmp_size);
   b_tmp_size[0] = 1;
   b_tmp_size[1] = (maxdimlen - j) + 1;
@@ -609,45 +675,45 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
     tmp_data[maxdimlen] = 512.0 + -206.0 * (real_T)(j + maxdimlen);
   }
 
-  st.site = &i_emlrtRSI;
+  st.site = &k_emlrtRSI;
   varargin_3 = prod(&st, tmp_data, b_tmp_size);
-  st.site = &i_emlrtRSI;
-  b_st.site = &r_emlrtRSI;
-  c_st.site = &s_emlrtRSI;
-  d_st.site = &t_emlrtRSI;
+  st.site = &k_emlrtRSI;
+  b_st.site = &w_emlrtRSI;
+  c_st.site = &x_emlrtRSI;
+  d_st.site = &y_emlrtRSI;
   eml_assert_valid_size_arg(&d_st, varargin_1);
-  d_st.site = &t_emlrtRSI;
+  d_st.site = &y_emlrtRSI;
   eml_assert_valid_size_arg(&d_st, varargin_3);
   if ((int32_T)varargin_1 > 156672) {
-    b_st.site = &q_emlrtRSI;
+    b_st.site = &v_emlrtRSI;
     b_eml_error(&b_st);
   }
 
   if ((int32_T)varargin_3 > 156672) {
-    b_st.site = &q_emlrtRSI;
+    b_st.site = &v_emlrtRSI;
     b_eml_error(&b_st);
   }
 
-  b_emxInit_creal_T(&st, &b_y, 3, &g_emlrtRTEI, true);
+  b_emxInit_creal_T(&st, &b_y, 3, &f_emlrtRTEI, true);
   j = b_y->size[0] * b_y->size[1] * b_y->size[2];
   b_y->size[0] = (int32_T)varargin_1;
   b_y->size[1] = 512;
   b_y->size[2] = (int32_T)varargin_3;
   emxEnsureCapacity(&st, (emxArray__common *)b_y, j, (int32_T)sizeof(creal_T),
-                    &h_emlrtRTEI);
+                    &g_emlrtRTEI);
   if (156672 == ((int32_T)varargin_1 << 9) * (int32_T)varargin_3) {
   } else {
     c_y = NULL;
-    m2 = emlrtCreateCharArray(2, iv4);
+    m1 = emlrtCreateCharArray(2, iv7);
     for (i = 0; i < 40; i++) {
-      cv5[i] = cv6[i];
+      cv11[i] = cv12[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 40, m2, cv5);
-    emlrtAssign(&c_y, m2);
-    b_st.site = &ad_emlrtRSI;
-    e_st.site = &md_emlrtRSI;
-    error(&b_st, b_message(&e_st, c_y, &j_emlrtMCI), &k_emlrtMCI);
+    emlrtInitCharArrayR2013a(&st, 40, m1, cv11);
+    emlrtAssign(&c_y, m1);
+    b_st.site = &ge_emlrtRSI;
+    e_st.site = &we_emlrtRSI;
+    error(&b_st, b_message(&e_st, c_y, &g_emlrtMCI), &h_emlrtMCI);
   }
 
   for (k = 0; k < 156672; k++) {
@@ -655,12 +721,12 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   }
 
   /* 1, 512, 306 */
-  emxInit_real_T(sp, &d_y, 2, &g_emlrtRTEI, true);
+  emxInit_real_T(sp, &d_y, 2, &f_emlrtRTEI, true);
   j = d_y->size[0] * d_y->size[1];
   d_y->size[0] = 1;
   d_y->size[1] = 1;
   emxEnsureCapacity(sp, (emxArray__common *)d_y, j, (int32_T)sizeof(real_T),
-                    &g_emlrtRTEI);
+                    &f_emlrtRTEI);
   j = 0;
   while (j <= 0) {
     d_y->data[0] = 256.0;
@@ -679,7 +745,7 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   }
 
   /* 257, 306 */
-  st.site = &j_emlrtRSI;
+  st.site = &l_emlrtRSI;
   s_size[0] = 1;
   s_size[1] = 1;
   j = 0;
@@ -688,19 +754,19 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
     j = 1;
   }
 
-  b_st.site = &j_emlrtRSI;
+  b_st.site = &l_emlrtRSI;
   varargin_1 = norm(d_data, s_size);
   j = d_y->size[0] * d_y->size[1];
   d_y->size[0] = 1;
   d_y->size[1] = (int32_T)muDoubleScalarFloor(512.0 - (varargin_1 + 1.0)) + 1;
   emxEnsureCapacity(&st, (emxArray__common *)d_y, j, (int32_T)sizeof(real_T),
-                    &g_emlrtRTEI);
+                    &f_emlrtRTEI);
   ypagesize = (int32_T)muDoubleScalarFloor(512.0 - (varargin_1 + 1.0));
   for (j = 0; j <= ypagesize; j++) {
     d_y->data[d_y->size[0] * j] = (varargin_1 + 1.0) + (real_T)j;
   }
 
-  b_st.site = &w_emlrtRSI;
+  b_st.site = &fb_emlrtRSI;
   overflow = true;
   k = 0;
   exitg1 = false;
@@ -717,48 +783,38 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   if (overflow) {
   } else {
     e_y = NULL;
-    m2 = emlrtCreateCharArray(2, iv5);
+    m1 = emlrtCreateCharArray(2, iv8);
     for (i = 0; i < 31; i++) {
-      cv7[i] = cv8[i];
+      cv13[i] = cv14[i];
     }
 
-    emlrtInitCharArrayR2013a(&b_st, 31, m2, cv7);
-    emlrtAssign(&e_y, m2);
-    c_st.site = &cd_emlrtRSI;
-    f_st.site = &nd_emlrtRSI;
-    error(&c_st, b_message(&f_st, e_y, &p_emlrtMCI), &q_emlrtMCI);
+    emlrtInitCharArrayR2013a(&b_st, 31, m1, cv13);
+    emlrtAssign(&e_y, m1);
+    c_st.site = &ie_emlrtRSI;
+    f_st.site = &xe_emlrtRSI;
+    error(&c_st, b_message(&f_st, e_y, &m_emlrtMCI), &n_emlrtMCI);
   }
 
-  b_st.site = &x_emlrtRSI;
-  c_st.site = &y_emlrtRSI;
-  for (j = 0; j < 512; j++) {
-    b_data[j] = false;
-  }
-
-  d_st.site = &db_emlrtRSI;
-  if (1 > d_y->size[1]) {
-    overflow = false;
-  } else {
-    overflow = (d_y->size[1] > 2147483646);
-  }
-
-  if (overflow) {
-    g_st.site = &p_emlrtRSI;
-    check_forloop_overflow_error(&g_st);
-  }
-
-  for (k = 1; k <= d_y->size[1]; k++) {
-    b_data[(int32_T)d_y->data[k - 1] - 1] = true;
-  }
-
+  emxInit_boolean_T(&b_st, &r2, 2, &f_emlrtRTEI, true);
+  b_st.site = &gb_emlrtRSI;
+  c_st.site = &hb_emlrtRSI;
+  make_bitarray(&c_st, 512.0, d_y, r2);
+  b_size[0] = 1;
+  b_size[1] = r2->size[1];
+  ypagesize = r2->size[0] * r2->size[1];
   emxFree_real_T(&d_y);
-  c_st.site = &ab_emlrtRSI;
-  maxdimlen = 0;
-  d_st.site = &eb_emlrtRSI;
-  for (k = 0; k < 512; k++) {
-    maxdimlen += b_data[k];
+  for (j = 0; j < ypagesize; j++) {
+    b_data[j] = r2->data[j];
   }
 
+  emxFree_boolean_T(&r2);
+  b_b_data.data = (boolean_T *)&b_data;
+  b_b_data.size = (int32_T *)&b_size;
+  b_b_data.allocatedSize = 512;
+  b_b_data.numDimensions = 2;
+  b_b_data.canFreeData = false;
+  c_st.site = &ib_emlrtRSI;
+  maxdimlen = num_true(&c_st, &b_b_data);
   for (j = 0; j < 3; j++) {
     sz[j] = b_y->size[j];
   }
@@ -766,10 +822,10 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   if (512 - maxdimlen <= 512) {
   } else {
     f_y = NULL;
-    m2 = emlrtCreateString("Assertion failed.");
-    emlrtAssign(&f_y, m2);
-    c_st.site = &bd_emlrtRSI;
-    error(&c_st, f_y, &r_emlrtMCI);
+    m1 = emlrtCreateString("Assertion failed.");
+    emlrtAssign(&f_y, m1);
+    c_st.site = &he_emlrtRSI;
+    error(&c_st, f_y, &o_emlrtMCI);
   }
 
   sz[1] = 512 - maxdimlen;
@@ -777,13 +833,13 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
     emlrtNonNegativeCheckFastR2012b(sz[j], &f_emlrtDCI, &b_st);
   }
 
-  b_emxInit_creal_T(&b_st, &g_y, 3, &j_emlrtRTEI, true);
+  b_emxInit_creal_T(&b_st, &g_y, 3, &i_emlrtRTEI, true);
   j = g_y->size[0] * g_y->size[1] * g_y->size[2];
   g_y->size[0] = sz[0];
   g_y->size[1] = 512 - maxdimlen;
   g_y->size[2] = sz[2];
   emxEnsureCapacity(&b_st, (emxArray__common *)g_y, j, (int32_T)sizeof(creal_T),
-                    &i_emlrtRTEI);
+                    &h_emlrtRTEI);
   xpagesize = b_y->size[0] << 9;
   ypagesize = (512 - maxdimlen) * b_y->size[0];
   npages = 1;
@@ -798,7 +854,7 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
     maxdimlen = 4;
   }
 
-  c_st.site = &bb_emlrtRSI;
+  c_st.site = &jb_emlrtRSI;
   if (1 > npages) {
     b1 = false;
   } else {
@@ -806,7 +862,7 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   }
 
   if (b1) {
-    d_st.site = &p_emlrtRSI;
+    d_st.site = &q_emlrtRSI;
     check_forloop_overflow_error(&d_st);
   }
 
@@ -815,7 +871,7 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
     iy0 = i * ypagesize;
     for (k = 0; k < 512; k++) {
       if (!b_data[k]) {
-        c_st.site = &cb_emlrtRSI;
+        c_st.site = &kb_emlrtRSI;
         if (1 > b_y->size[0]) {
           overflow = false;
         } else {
@@ -823,7 +879,7 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
         }
 
         if (overflow) {
-          d_st.site = &p_emlrtRSI;
+          d_st.site = &q_emlrtRSI;
           check_forloop_overflow_error(&d_st);
         }
 
@@ -842,9 +898,9 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
 
   /* second one is range of rows taken OUT [] DELETES rows specified */
   /* 1, 257, 306 */
-  st.site = &k_emlrtRSI;
+  st.site = &m_emlrtRSI;
   ypagesize = g_y->size[0] * g_y->size[1] * g_y->size[2];
-  b_st.site = &fb_emlrtRSI;
+  b_st.site = &nb_emlrtRSI;
   b_eml_assert_valid_size_arg(&b_st, s);
   for (j = 0; j < 2; j++) {
     b_sz[j] = (int16_T)(int32_T)s[j];
@@ -867,12 +923,12 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   }
 
   if (b_sz[0] > maxdimlen) {
-    b_st.site = &q_emlrtRSI;
+    b_st.site = &v_emlrtRSI;
     b_eml_error(&b_st);
   }
 
   if (b_sz[1] > maxdimlen) {
-    b_st.site = &q_emlrtRSI;
+    b_st.site = &v_emlrtRSI;
     b_eml_error(&b_st);
   }
 
@@ -880,23 +936,23 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   y->size[0] = b_sz[0];
   y->size[1] = b_sz[1];
   emxEnsureCapacity(&st, (emxArray__common *)y, j, (int32_T)sizeof(creal_T),
-                    &h_emlrtRTEI);
+                    &g_emlrtRTEI);
   if (ypagesize == b_sz[0] * b_sz[1]) {
   } else {
     h_y = NULL;
-    m2 = emlrtCreateCharArray(2, iv6);
+    m1 = emlrtCreateCharArray(2, iv9);
     for (i = 0; i < 40; i++) {
-      cv5[i] = cv6[i];
+      cv11[i] = cv12[i];
     }
 
-    emlrtInitCharArrayR2013a(&st, 40, m2, cv5);
-    emlrtAssign(&h_y, m2);
-    b_st.site = &ad_emlrtRSI;
-    e_st.site = &md_emlrtRSI;
-    error(&b_st, b_message(&e_st, h_y, &j_emlrtMCI), &k_emlrtMCI);
+    emlrtInitCharArrayR2013a(&st, 40, m1, cv11);
+    emlrtAssign(&h_y, m1);
+    b_st.site = &ge_emlrtRSI;
+    e_st.site = &we_emlrtRSI;
+    error(&b_st, b_message(&e_st, h_y, &g_emlrtMCI), &h_emlrtMCI);
   }
 
-  b_st.site = &gb_emlrtRSI;
+  b_st.site = &ob_emlrtRSI;
   if (1 > ypagesize) {
     b2 = false;
   } else {
@@ -904,7 +960,7 @@ void rfft(JenkinsCompareStackData *SD, const emlrtStack *sp, const real_T x
   }
 
   if (b2) {
-    c_st.site = &p_emlrtRSI;
+    c_st.site = &q_emlrtRSI;
     check_forloop_overflow_error(&c_st);
   }
 

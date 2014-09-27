@@ -21,8 +21,8 @@
 #include "JenkinsCompare_types.h"
 
 /* Function Declarations */
-extern void melbankm(const emlrtStack *sp, real_T p, real_T fs, const mxArray
-                     **x, emxArray_real_T *mc, real_T *mn);
+extern void melbankm(const emlrtStack *sp, real_T p, real_T fs, emxArray_real_T *
+                     x, emxArray_real_T *mc, real_T *mn);
 
 #endif
 

@@ -23,6 +23,8 @@
 /* Function Declarations */
 extern void b_abs(const emlrtStack *sp, const emxArray_real_T *x,
                   emxArray_real_T *y);
+extern void c_abs(const emlrtStack *sp, const emxArray_creal_T *x,
+                  emxArray_real_T *y);
 
 #endif
 

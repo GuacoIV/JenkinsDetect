@@ -13,35 +13,35 @@
 #include "JenkinsCompare_mexutil.h"
 
 /* Variable Definitions */
-static emlrtMCInfo f_emlrtMCI = { 18, 9, "prod",
+static emlrtMCInfo c_emlrtMCI = { 18, 9, "prod",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\datafun\\prod.m"
 };
 
-static emlrtMCInfo g_emlrtMCI = { 17, 19, "prod",
+static emlrtMCInfo d_emlrtMCI = { 17, 19, "prod",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\datafun\\prod.m"
 };
 
-static emlrtMCInfo h_emlrtMCI = { 23, 9, "prod",
+static emlrtMCInfo e_emlrtMCI = { 23, 9, "prod",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\datafun\\prod.m"
 };
 
-static emlrtMCInfo i_emlrtMCI = { 20, 19, "prod",
+static emlrtMCInfo f_emlrtMCI = { 20, 19, "prod",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\datafun\\prod.m"
 };
 
-static emlrtRSInfo wc_emlrtRSI = { 20, "prod",
+static emlrtRSInfo de_emlrtRSI = { 20, "prod",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\datafun\\prod.m"
 };
 
-static emlrtRSInfo xc_emlrtRSI = { 17, "prod",
+static emlrtRSInfo ee_emlrtRSI = { 17, "prod",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\datafun\\prod.m"
 };
 
-static emlrtRSInfo kd_emlrtRSI = { 23, "prod",
+static emlrtRSInfo ue_emlrtRSI = { 23, "prod",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\datafun\\prod.m"
 };
 
-static emlrtRSInfo ld_emlrtRSI = { 18, "prod",
+static emlrtRSInfo ve_emlrtRSI = { 18, "prod",
   "C:\\Program Files\\MATLAB\\R2014a\\toolbox\\eml\\lib\\matlab\\datafun\\prod.m"
 };
 
@@ -54,19 +54,19 @@ real_T prod(const emlrtStack *sp, const real_T x_data[], const int32_T x_size[2]
   int32_T i;
   int32_T exitg1;
   const mxArray *b_y;
-  static const int32_T iv9[2] = { 1, 31 };
+  static const int32_T iv12[2] = { 1, 31 };
 
-  const mxArray *m4;
-  char_T cv13[31];
-  static const char_T cv14[31] = { 'C', 'o', 'd', 'e', 'r', ':', 't', 'o', 'o',
+  const mxArray *m3;
+  char_T cv19[31];
+  static const char_T cv20[31] = { 'C', 'o', 'd', 'e', 'r', ':', 't', 'o', 'o',
     'l', 'b', 'o', 'x', ':', 'p', 'r', 'o', 'd', '_', 's', 'p', 'e', 'c', 'i',
     'a', 'l', 'E', 'm', 'p', 't', 'y' };
 
   const mxArray *c_y;
-  static const int32_T iv10[2] = { 1, 36 };
+  static const int32_T iv13[2] = { 1, 36 };
 
-  char_T cv15[36];
-  static const char_T cv16[36] = { 'C', 'o', 'd', 'e', 'r', ':', 't', 'o', 'o',
+  char_T cv21[36];
+  static const char_T cv22[36] = { 'C', 'o', 'd', 'e', 'r', ':', 't', 'o', 'o',
     'l', 'b', 'o', 'x', ':', 'a', 'u', 't', 'o', 'D', 'i', 'm', 'I', 'n', 'c',
     'o', 'm', 'p', 'a', 't', 'i', 'b', 'i', 'l', 'i', 't', 'y' };
 
@@ -101,16 +101,16 @@ real_T prod(const emlrtStack *sp, const real_T x_data[], const int32_T x_size[2]
   if (!p) {
   } else {
     b_y = NULL;
-    m4 = emlrtCreateCharArray(2, iv9);
+    m3 = emlrtCreateCharArray(2, iv12);
     for (i = 0; i < 31; i++) {
-      cv13[i] = cv14[i];
+      cv19[i] = cv20[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 31, m4, cv13);
-    emlrtAssign(&b_y, m4);
-    st.site = &xc_emlrtRSI;
-    b_st.site = &ld_emlrtRSI;
-    error(&st, b_message(&b_st, b_y, &f_emlrtMCI), &g_emlrtMCI);
+    emlrtInitCharArrayR2013a(sp, 31, m3, cv19);
+    emlrtAssign(&b_y, m3);
+    st.site = &ee_emlrtRSI;
+    b_st.site = &ve_emlrtRSI;
+    error(&st, b_message(&b_st, b_y, &c_emlrtMCI), &d_emlrtMCI);
   }
 
   if ((x_size[1] == 1) || (x_size[1] != 1)) {
@@ -122,16 +122,16 @@ real_T prod(const emlrtStack *sp, const real_T x_data[], const int32_T x_size[2]
   if (p) {
   } else {
     c_y = NULL;
-    m4 = emlrtCreateCharArray(2, iv10);
+    m3 = emlrtCreateCharArray(2, iv13);
     for (i = 0; i < 36; i++) {
-      cv15[i] = cv16[i];
+      cv21[i] = cv22[i];
     }
 
-    emlrtInitCharArrayR2013a(sp, 36, m4, cv15);
-    emlrtAssign(&c_y, m4);
-    st.site = &wc_emlrtRSI;
-    b_st.site = &kd_emlrtRSI;
-    error(&st, b_message(&b_st, c_y, &h_emlrtMCI), &i_emlrtMCI);
+    emlrtInitCharArrayR2013a(sp, 36, m3, cv21);
+    emlrtAssign(&c_y, m3);
+    st.site = &de_emlrtRSI;
+    b_st.site = &ue_emlrtRSI;
+    error(&st, b_message(&b_st, c_y, &e_emlrtMCI), &f_emlrtMCI);
   }
 
   if (x_size[1] == 0) {

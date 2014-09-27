@@ -13,10 +13,10 @@
 /* Function Definitions */
 void b_floor(emxArray_real_T *x)
 {
-  int32_T i11;
+  int32_T i17;
   int32_T k;
-  i11 = x->size[1];
-  for (k = 0; k < i11; k++) {
+  i17 = x->size[1];
+  for (k = 0; k < i17; k++) {
     x->data[k] = muDoubleScalarFloor(x->data[k]);
   }
 }

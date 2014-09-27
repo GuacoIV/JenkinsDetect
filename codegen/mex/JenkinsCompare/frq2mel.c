@@ -17,7 +17,7 @@ static emlrtRTEInfo r_emlrtRTEI = { 1, 21, "frq2mel",
   "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\frq2mel.m"
 };
 
-static emlrtECInfo e_emlrtECI = { 2, 59, 7, "frq2mel",
+static emlrtECInfo f_emlrtECI = { 2, 59, 7, "frq2mel",
   "C:\\Users\\Edward\\OneDrive\\LSU\\Senior Year\\EE 4810 - Senior Design I\\Audio\\Noise Removed\\frq2mel.m"
 };
 
@@ -28,9 +28,9 @@ void b_frq2mel(const emlrtStack *sp, const emxArray_real_T *frq, emxArray_real_T
   int32_T k;
   int32_T loop_ub;
   emxArray_real_T *x;
-  emxArray_real_T *r3;
+  emxArray_real_T *r5;
   int32_T b_mel[2];
-  int32_T iv18[2];
+  int32_T iv25[2];
   emlrtHeapReferenceStackEnterFcnR2012b(sp);
 
   /* FRQ2ERB  Convert Hertz to Mel frequency scale MEL=(FRQ) */
@@ -110,19 +110,19 @@ void b_frq2mel(const emlrtStack *sp, const emxArray_real_T *frq, emxArray_real_T
     x->data[k] = 1.0 + x->data[k] / 700.0;
   }
 
-  emxInit_real_T(sp, &r3, 2, &r_emlrtRTEI, true);
-  k = r3->size[0] * r3->size[1];
-  r3->size[0] = 1;
-  r3->size[1] = x->size[1];
-  emxEnsureCapacity(sp, (emxArray__common *)r3, k, (int32_T)sizeof(real_T),
+  emxInit_real_T(sp, &r5, 2, &r_emlrtRTEI, true);
+  k = r5->size[0] * r5->size[1];
+  r5->size[0] = 1;
+  r5->size[1] = x->size[1];
+  emxEnsureCapacity(sp, (emxArray__common *)r5, k, (int32_T)sizeof(real_T),
                     &r_emlrtRTEI);
   loop_ub = x->size[0] * x->size[1];
   for (k = 0; k < loop_ub; k++) {
-    r3->data[k] = x->data[k];
+    r5->data[k] = x->data[k];
   }
 
   for (k = 0; k < x->size[1]; k++) {
-    r3->data[k] = muDoubleScalarLog(r3->data[k]);
+    r5->data[k] = muDoubleScalarLog(r5->data[k]);
   }
 
   emxFree_real_T(&x);
@@ -131,10 +131,10 @@ void b_frq2mel(const emlrtStack *sp, const emxArray_real_T *frq, emxArray_real_T
   }
 
   for (k = 0; k < 2; k++) {
-    iv18[k] = r3->size[k];
+    iv25[k] = r5->size[k];
   }
 
-  emlrtSizeEqCheck2DFastR2012b(b_mel, iv18, &e_emlrtECI, sp);
+  emlrtSizeEqCheck2DFastR2012b(b_mel, iv25, &f_emlrtECI, sp);
   k = mel->size[0] * mel->size[1];
   mel->size[0] = 1;
   emxEnsureCapacity(sp, (emxArray__common *)mel, k, (int32_T)sizeof(real_T),
@@ -143,10 +143,10 @@ void b_frq2mel(const emlrtStack *sp, const emxArray_real_T *frq, emxArray_real_T
   loop_ub = mel->size[1];
   loop_ub *= k;
   for (k = 0; k < loop_ub; k++) {
-    mel->data[k] = mel->data[k] * r3->data[k] * 1127.0104803341571;
+    mel->data[k] = mel->data[k] * r5->data[k] * 1127.0104803341571;
   }
 
-  emxFree_real_T(&r3);
+  emxFree_real_T(&r5);
   emlrtHeapReferenceStackLeaveFcnR2012b(sp);
 }
 

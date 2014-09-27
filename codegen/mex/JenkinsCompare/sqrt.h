@@ -1,12 +1,12 @@
 /*
- * fft.h
+ * sqrt.h
  *
- * Code generation for function 'fft'
+ * Code generation for function 'sqrt'
  *
  */
 
-#ifndef __FFT_H__
-#define __FFT_H__
+#ifndef __SQRT_H__
+#define __SQRT_H__
 
 /* Include files */
 #include <math.h>
@@ -21,10 +21,8 @@
 #include "JenkinsCompare_types.h"
 
 /* Function Declarations */
-extern void b_fft(const emlrtStack *sp, const emxArray_creal_T *x,
-                  emxArray_creal_T *y);
-extern void fft(const real_T x[156672], creal_T y[156672]);
+extern void b_sqrt(creal_T *x);
 
 #endif
 
-/* End of code generation (fft.h) */
+/* End of code generation (sqrt.h) */

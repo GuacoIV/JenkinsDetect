@@ -13,7 +13,7 @@
 /* Function Definitions */
 void mel2frq(const real_T mel[4], real_T frq[4])
 {
-  int32_T i3;
+  int32_T i5;
 
   /* MEL2FRQ  Convert Mel frequency scale to Hertz FRQ=(MEL) */
   /* 	frq = mel2frq(mel) converts a vector of Mel frequencies */
@@ -65,9 +65,9 @@ void mel2frq(const real_T mel[4], real_T frq[4])
   /*    http://www.gnu.org/copyleft/gpl.html or by writing to */
   /*    Free Software Foundation, Inc.,675 Mass Ave, Cambridge, MA 02139, USA. */
   /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-  for (i3 = 0; i3 < 4; i3++) {
-    frq[i3] = 700.0 * muDoubleScalarSign(mel[i3]) * (muDoubleScalarExp
-      (muDoubleScalarAbs(mel[i3]) / 1127.0104803341571) - 1.0);
+  for (i5 = 0; i5 < 4; i5++) {
+    frq[i5] = 700.0 * muDoubleScalarSign(mel[i5]) * (muDoubleScalarExp
+      (muDoubleScalarAbs(mel[i5]) / 1127.0104803341571) - 1.0);
   }
 }
 

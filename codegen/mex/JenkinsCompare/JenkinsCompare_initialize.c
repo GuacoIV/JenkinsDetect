@@ -11,9 +11,7 @@
 #include "JenkinsCompare_initialize.h"
 #include "frq2mel.h"
 #include "mel2frq.h"
-
-/* Variable Definitions */
-static const volatile char_T *emlrtBreakCheckR2012bFlagVar;
+#include "JenkinsCompare_data.h"
 
 /* Function Declarations */
 static void JenkinsCompare_once(void);

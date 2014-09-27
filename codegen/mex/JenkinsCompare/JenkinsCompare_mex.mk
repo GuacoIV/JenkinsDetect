@@ -12,9 +12,11 @@ SRC_FILES =  \
 	JenkinsCompare_initialize.c \
 	JenkinsCompare_terminate.c \
 	JenkinsCompare.c \
+	log.c \
 	eml_error.c \
 	floor.c \
 	melcepst.c \
+	enframe.c \
 	abs.c \
 	rfft.c \
 	prod.c \
@@ -24,6 +26,8 @@ SRC_FILES =  \
 	melbankm.c \
 	frq2mel.c \
 	mel2frq.c \
+	sqrt.c \
+	rdct.c \
 	_coder_JenkinsCompare_api.c \
 	JenkinsCompare_emxutil.c \
 	_coder_JenkinsCompare_mex.c \

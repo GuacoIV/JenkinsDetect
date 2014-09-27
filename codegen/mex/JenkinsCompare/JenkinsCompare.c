@@ -21,7 +21,7 @@ static emlrtRSInfo b_emlrtRSI = { 14, "log",
 
 /* Function Definitions */
 void JenkinsCompare(JenkinsCompareStackData *SD, const emlrtStack *sp, const
-                    real_T x[78596], real_T sampleRate, real_T y[9792])
+                    real_T x[78596], real_T sampleRate, emxArray_real_T *y)
 {
   emlrtStack st;
   emlrtStack b_st;
