@@ -33,7 +33,7 @@ function y=rfft(x,n,d)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 s=size(x);
-numSamples = 512;
+numSamples = 256;
 if prod(s)==1
     y=x
 else

@@ -99,6 +99,7 @@ end
 f=rfft(z.');
 [m,a,b]=melbankm(p,n,fs,fl,fh,w);
 pw=f(norm(a):b,:).*conj(f(norm(a):b,:));
+pw = real(pw);
 pth=max(pw(:))*1E-20;
 if any(w=='p')
    y=log(max(m*pw,pth));
@@ -159,12 +160,12 @@ if nargout<1
    [nf,nc]=size(newc);
    t=((0:nf-1)*inc+(n-1)/2)/fs;
    ci=(1:nc)-any(w=='0')-any(w=='E');
-   imh = imagesc(t,ci,newc.');
+   %imh = imagesc(t,ci,newc.');
    axis('xy');
    xlabel('Time (s)');
    ylabel('Mel-cepstrum coefficient');
 	map = (0:63)'/63;
-	colormap([map map map]);
-	colorbar;
+	%colormap([map map map]);
+	%colorbar;
 end
 
