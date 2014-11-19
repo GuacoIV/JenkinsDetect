@@ -22,35 +22,35 @@ if (abs(2*abs(Z(1:NFFT/2+1)) - resultJ) < .01)
     %display(answer);
     foundJ = 1;
 end
-if (foundJ == 1 & abs(2*abs(Z(25:NFFT/2+1)) - resultE(25:NFFT/2+1)) < .011) %25 cuts the lower frequencies
+if (foundJ == 1 && abs(2*abs(Z(25:NFFT/2+1)) - resultE(25:NFFT/2+1)) < .011) %25 cuts the lower frequencies
     answer = 'Found an E!';
     %count=count+1;
     %display(count);
     %display(answer);
     foundE = 1;
 end
-if (foundE == 1 & abs(2*abs(Z(25:NFFT/2+1)) - resultN(25:NFFT/2+1)) < .019) %25 cuts the lower frequencies
+if (foundE == 1 && abs(2*abs(Z(25:NFFT/2+1)) - resultN(25:NFFT/2+1)) < .019) %25 cuts the lower frequencies
     answer = 'Found an N!';
     %count=count+1;
     %display(count);
     %display(answer);
     foundN = 1;
 end
-if (foundN == 1 & abs(2*abs(Z(1:NFFT/2+1)) - resultK(1:NFFT/2+1)) < .01) %25 cuts the lower frequencies
+if (foundN == 1 && abs(2*abs(Z(1:NFFT/2+1)) - resultK(1:NFFT/2+1)) < .01) %25 cuts the lower frequencies
     answer = 'Found an K!';
     %count=count+1;
    % display(count);
     %display(answer);
     foundK = 1;
 end
-if (foundK == 1 & abs(2*abs(Z(1:NFFT/2+1)) - resultK(1:NFFT/2+1)) < .01)
+if (foundK == 1 && abs(2*abs(Z(1:NFFT/2+1)) - resultK(1:NFFT/2+1)) < .01)
     answer = 'Found an I!';
     %count=count+1;
     %display(count);
    % display(answer);
     foundI = 1;
 end
-if (foundI == 1 & abs(2*abs(Z(1:NFFT/2+1)) - resultK(1:NFFT/2+1)) < .01)
+if (foundI == 1 && abs(2*abs(Z(1:NFFT/2+1)) - resultK(1:NFFT/2+1)) < .01)
     answer = 'Found an S!';
     %count=count+1;
     %display(count);
