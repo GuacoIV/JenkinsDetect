@@ -13,6 +13,7 @@ foundE = 0;
 [y, Fs] = audioread('N1.wav');
 resultN = melcepst(y, 44100, 'M', 12, floor(3*log(44100)), 512, 512/2, 0, 0.5);
 foundN = 0;
+foundN2 = 0;
 
 %Profile an k
 [y, Fs] = audioread('K1.wav');
