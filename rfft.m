@@ -33,7 +33,6 @@ function y=rfft(x,n,d)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 s=size(x);
-numSamples = 256;
 if prod(s)==1
     y=x
 else
@@ -46,12 +45,9 @@ else
     if isempty(n) 
         n=s(d);
     end
-    y=fft(x,numSamples,1);
-    y=reshape(y,prod((s(1:norm(d)-1))),numSamples,prod(s(norm(d)+1:end))); 
-    size(y); %1, 512, 306
-    s(d)=1+fix(n/2); %257, 306
-    y(:,norm(s(d))+1:end,:)=[]; %second one is range of rows taken OUT [] DELETES rows specified
-    size(y); %1, 257, 306
-    y=reshape(y,s); %257, 306
-    size(y);
+    y=fft(x,n,d);
+    y=reshape(y,prod(s(1:d-1)),n,prod(s(d+1:end))); 
+    s(d)=1+fix(n/2);
+    y(:,s(d)+1:end,:)=[];
+    y=reshape(y,s);
 end

@@ -26,6 +26,7 @@ function [f,t,w]=enframe(x,win,inc,m)
 %
 % Outputs:   f    enframed data - one frame per row
 %            t    fractional time in samples at the centre of each frame
+%                 with the first sample being 1.
 %            w    window function used
 %
 % By default, the number of frames will be rounded down to the nearest
@@ -51,8 +52,8 @@ function [f,t,w]=enframe(x,win,inc,m)
 %        'wn' use Hanning window
 %        'x'  include all frames that include any of the x samples
 
-%	   Copyright (C) Mike Brookes 1997-2012
-%      Version: $Id: enframe.m 4073 2014-01-16 08:38:22Z dmb $
+%	   Copyright (C) Mike Brookes 1997-2014
+%      Version: $Id: enframe.m 4914 2014-07-24 08:44:26Z dmb $
 %
 %   VOICEBOX is a MATLAB toolbox for speech processing.
 %   Home page: http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html
@@ -123,5 +124,3 @@ if nargout>1
     end
     t=t0+inc*(0:(nf-1)).';
 end
-
-

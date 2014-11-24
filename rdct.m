@@ -38,53 +38,21 @@ function y=rdct(x,n,a,b)
 %   Free Software Foundation, Inc.,675 Mass Ave, Cambridge, MA 02139, USA.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Was fl=size(x,1)==1; %0
-doubleSize = 0;
-doubleSize = size(x,1);
-if (doubleSize==1)
-    fl = 1; 
-else
-    fl = 0; 
-end
-if fl 
-    temp = x;
-    
-    newx = zeros(numel(temp), 1);
-    counter = 1;
-    numRows = size(temp);
-    for j = 1:numRows(2)
-        for i = 1:numRows(1)
-            newx(counter, 1) = temp(i, j);
-            counter = counter + 1;
-        end
-    end
-    %Was x=x(:);
-else
-    newx = x;
-end
-m = 0;
-k = 0;
-[m,k]=size(newx);
+fl=size(x,1)==1;
+if fl x=x(:); end
+[m,k]=size(x);
 if nargin<2 n=m;
 end
 if nargin<4 b=1;  
     if nargin<3 a=sqrt(2*n);
     end
     end
-if n>m newx=[newx; zeros(n-m,k)];
-elseif n<m newx(n+1:m,:)=[];
+if n>m x=[x; zeros(n-m,k)];
+elseif n<m x(n+1:m,:)=[];
 end
-newx=[newx(1:2:n,:); newx(2*fix(n/2):-2:2,:)];
+
+x=[x(1:2:n,:); x(2*fix(n/2):-2:2,:)];
 z=[sqrt(2) 2*exp((-0.5i*pi/n)*(1:n-1))].';
-y=real(fft(newx).*z(:,ones(1,k)))/a;
+y=real(fft(x).*z(:,ones(1,k)))/a;
 y(1,:)=y(1,:)*b;
-if fl 
-    %Was y=y.'; 
-    tempTwo = y;
-    numRows = size(y);
-    for i = 1:numRows(1)
-        for j = 1:numRows(2)
-            y(i,j) = tempTwo(j, i);
-        end
-    end
-end
+if fl y=y.'; end
