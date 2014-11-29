@@ -4,7 +4,7 @@ waitTime = 1.3;
 [y, Fs] = audioread('Jenkins (1).wav');
 one = melcepst(y, 44100, 'M', 12, floor(3*log(44100)), 512, 512/2, 0, 0.5);
 
- for i = 1:12
+ for i = 1:13
     whichOne = i;
     strwhichOne = strcat('Jenkins (', num2str(whichOne), ').wav');
     display(strwhichOne);
